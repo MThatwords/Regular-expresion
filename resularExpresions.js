@@ -5,7 +5,9 @@ let result = petRegex.test(petString);// true , si esta dog o cat ...
 let fccRegex = /freecodecamp/ig; // i: ignore g:global
 
 
-
+let quoteSample = "The five boxing wizards jump quickly.";
+let nonAlphabetRegex = /\W/g; // Change this line
+let result1 = quoteSample.match(nonAlphabetRegex).length;
 
 function long(s){
   return Math.max(...s.split(" ").map(word => word.length))

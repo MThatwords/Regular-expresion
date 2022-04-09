@@ -128,6 +128,14 @@ function checkPositive(arr) {
 function checkPositive(arr) {
 return arr.some(i =>i>0)
 }
+
+function sentensify(str) {
+  // Add your code below this line
+  return str.split(/\W/).join(" ");
+
+}
+
+
 // CURRIED
 // https://javascript.info/currying-partials
 
