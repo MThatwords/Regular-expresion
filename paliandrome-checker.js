@@ -3,7 +3,6 @@ function palindrome(str) {
   return s.join("") === s.reverse().join("");
 }
 
-console.log(palindrome("0_0 (: /-\ :) 0-0"));
 
 function convertToRoman(num) {
   
@@ -35,7 +34,6 @@ function convertToRoman(num) {
   return roman;
 }
 
-console.log(convertToRoman(36));
 
 function rot13(str) {
   let coded="";
@@ -60,7 +58,6 @@ function rot13(str) {
   // return str.match(/\w/gi).map(n =>n)
 }
 
-console.log(rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT."));
 
 function telephoneCheck(str) {
   // const regex = [
@@ -81,19 +78,38 @@ function telephoneCheck(str) {
 
 function checkCashRegister(price, cash, cid) {
   let out = {};
-
+  const unit = {
+  "PENNY": 0.01,
+  "NICKEL": 0.05,
+  "DIME": 0.1,
+  "QUARTER": 0.25,
+  "ONE": 1,
+  "FIVE": 5,
+  "TEN": 10,
+  "TWENTY": 20,
+  "ONE HUNDRED": 100
+  }
   out.status = "INSUFFICIENT_FUNDS";
   out.change = [];
-  out.change = cid
   let diff = cash-price
   let temp = 0;
-  for(let i = 0; i < cid.length; i++){
-    if(diff%cid[i]!=diff){
+  diff
+  for(let i = cid.length-1; i>=0; i--){
+    if(diff % unit[cid[i][0]]!=diff){
+      console.log(unit[cid[i][0]]);
+      
+      console.log(Math.trunc(diff / unit[cid[i][0]]));
+      
+      out.change.push([cid[i][0],unit[cid[i][0]]*Math.trunc(diff / unit[cid[i][0]])])
+      diff = diff - unit[cid[i][0]]*Math.trunc(diff / unit[cid[i][0]])
+      
+      console.log(diff)
+      
       
     }
   }
   if(cid)//cid is < change
   return out;
 }
-
-console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+console.log(checkCashRegister(3.26, 100, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], 
+["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));// [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 10], ["TWENTY", 60]])
